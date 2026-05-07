@@ -1,0 +1,41 @@
+
+* Buck Converter - Ngspice Simulation
+
+Vs IN 0 DC 12
+
+M1 IN G X X IRFH5306
+D1 0 X MBRB2545CT
+
+L1 X OUT 100u
+C1 OUT 0 100u
+R1 OUT 0 6
+
+V2 G X PULSE(0 10 0 1n 1n 5u 10u)
+
+* MOSFET model
+.model IRFH5306 VDMOS(
++ Rg=1.4 Vto=2.35 Rd=2.05m Rs=0.0m
++ Rb=3.5m Kp=27
++ Cgdmax=0.58n Cgdmin=160p
++ Cgs=0.5n Cjo=3.5n
++ Is=300p ksubthres=.1
++ Vds=30 Ron=6.9m Qg=7.8n)
+
+* Diode model
+.model MBRB2545CT D(
++ Is=19.4n Rs=.01 N=.733
++ Eg=.718 Xti=.535
++ Cjo=2.05n Vj=.4 M=.41)
+
+.tran 100n 10m
+
+.control
+run
+plot i(L1)
+plot v(out)
+plot v(x)
+plot v(g) - v(x)
+.endc
+
+.end
+

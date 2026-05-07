@@ -1,0 +1,16 @@
+* Buck Converter - LTSpice Simulation
+Vs IN 0 12
+M1 IN G X X IRFH5306
+D 0 X MBRB2545CT
+L X OUT 100µ
+C OUT 0 100µ
+Ro OUT 0 6
+V2 G X PULSE(0 10 0 1n 1n 5u 10u)
+.model D D
+.lib C:\Users\adeet\AppData\Local\LTspice\lib\cmp\standard.dio
+.model NMOS NMOS
+.lib C:\Users\adeet\AppData\Local\LTspice\lib\cmp\standard.mos
+
+.tran 0 10m 0 100n
+.backanno
+.end
