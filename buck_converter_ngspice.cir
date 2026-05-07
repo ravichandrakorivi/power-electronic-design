@@ -3,14 +3,14 @@
 
 Vs IN 0 DC 12
 
-M1 IN G X X IRFH5306
-D1 0 X MBRB2545CT
+M1 IN G P P IRFH5306
+D1 0 P MBRB2545CT
 
-L1 X OUT 100u
+L1 P OUT 100u
 C1 OUT 0 100u
 R1 OUT 0 6
 
-V2 G X PULSE(0 10 0 1n 1n 5u 10u)
+V2 G P PULSE(0 10 0 1n 1n 5u 10u)
 
 * MOSFET model
 .model IRFH5306 VDMOS(
@@ -33,8 +33,8 @@ V2 G X PULSE(0 10 0 1n 1n 5u 10u)
 run
 plot i(L1)
 plot v(out)
-plot v(x)
-plot v(g) - v(x)
+plot v(p)
+plot v(g) - v(p)
 .endc
 
 .end
